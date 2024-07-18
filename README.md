@@ -1,3 +1,5 @@
+※この文章の殆どはWickyPackからの引用です。
+
 Welcome to WickyPack+MImod for DankaguLike!!!
 
 Ver. 2.1.0
