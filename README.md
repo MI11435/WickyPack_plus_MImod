@@ -1,4 +1,4 @@
-Welcome to WickyPack for DankaguLike!!!
+Welcome to WickyPack+MImod for DankaguLike!!!
 
 Ver. 2.1.0
 Featuring
@@ -11,12 +11,19 @@ Featuring
 + SubtitleLyric
 + Video
 
+MImod
++ C-NoteSet
++ Houkai
++ InfiniteLife
++ MISS-madness
++ SoftLanding
+
 Setting file: `settings.ini`
 
 ## About DankaguLike
 DankaguLike is a fan-made Touhou rhythm game that is a revival of the original end-of-service game Touhou Danmaku Kagura.
 
-## About WickyPack
+## About WickyPack+MImod
 This is a Global Lua modpack scripts reserved for extra functionalities for DankaguLike that's suitable for your gameplay.
 
 ## Featuring
