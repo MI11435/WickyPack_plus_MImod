@@ -20,7 +20,7 @@ MImod
 + MISS-madness
 + SoftLanding
 
-Setting file: `settings.ini`
+設定ファイル: `settings.ini`
 
 ## About DankaguLike
 DankaguLike is a fan-made Touhou rhythm game that is a revival of the original end-of-service game Touhou Danmaku Kagura.
