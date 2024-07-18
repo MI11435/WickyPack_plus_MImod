@@ -1,3 +1,4 @@
+色々追加したらmain.luaすら書き換えなきゃいけなくなった為、新たに作った次第です。
 ※この文章の殆どはWickyPackからの引用です。
 
 Welcome to WickyPack+MImod for DankaguLike!!!
