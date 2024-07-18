@@ -51,6 +51,6 @@ Step 5: Before playing the chart, go to Settings (設定変更) > Others (その
 Step 6: That's it!
 
 ## ダウンロード
-[ここからダウンロードして下さい。](https://github.com/MI11435/WickyPack_plus_MImod/releases/tag/WickyPack%2BMImod).
+[ここからダウンロードして下さい。](https://github.com/MI11435/WickyPack_plus_MImod/releases/tag/WickyPack%2BMImod)
 
 このパッケージはWickyPackに色々足したものです。
