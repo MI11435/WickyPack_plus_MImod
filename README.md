@@ -50,3 +50,5 @@ Step 6: That's it!
 
 ## Download
 You are able to download the pack from [this link here](https://github.com/WickyPlays/DankaguLike_GLWickyPack/releases).
+
+このパッケージはWickyPackに色々足したものです。
