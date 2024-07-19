@@ -24,9 +24,6 @@ MImod
 
 設定ファイル: `settings.ini`
 
-## About WickyPack+MImod
-This is a Global Lua modpack scripts reserved for extra functionalities for DankaguLike that's suitable for your gameplay.
-
 ## Featuring
 + Difficulty: allows viewing difficulty note at bottom right of screen
 + DamageTint: allows visible damage tint to players when they miss notes.
@@ -36,18 +33,8 @@ This is a Global Lua modpack scripts reserved for extra functionalities for Dank
 + NoteEffect: adding cool note effects whether player successfully hit notes.
 + SubtitleLyric: lyrics that are visible on the screen in the middle of gameplay from just a subtitle file (.srt) in song folder.
 
-## How to use
-Step 1: Install DankaguLike from this link: https://dankag-like.web.app/download
-
-Step 2: Download the package. (See Download below)
-
-Step 3: Extract the package then put it into GlobalLua folder of the game's data files.
-
-Step 4: Open the game.
-
-Step 5: Before playing the chart, go to Settings (設定変更) > Others (その他) > Global Lua (グローバルLua), switch until "DankaguLike_GLWickyPack".
-
-Step 6: That's it!
+## 使い方
+WickyPackと同じです。
 
 ## ダウンロード
 [ここからダウンロードして下さい。](https://github.com/MI11435/WickyPack_plus_MImod/releases/tag/WickyPack%2BMImod)
