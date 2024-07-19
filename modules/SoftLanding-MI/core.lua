@@ -1,6 +1,17 @@
 local execute = {}
 execute.active = true
-
+MIpozZ = function(noteController)
+    local noteZ = noteController.JustBeat - GAMESTATE:GetSongBeat()
+    return noteController:SetBeatPosition(noteZ)
+end
+MIpozZ2 = function (noteController)
+    local noteZ = noteController.JustBeat - GAMESTATE:GetSongBeat()
+    return noteController:SetBeatPosition(noteZ*0.75)
+end
+MIpozZ3 = function(noteController)
+    local noteZ = noteController.JustBeat - GAMESTATE:GetSongBeat()
+    return noteController:SetBeatPosition(noteZ*0.5)
+end
 execute.onloaded = function()
     GAMESTATE:SetActiveSameTimeBar(false)
     GAMESTATE:SetVisibleRate(18)
