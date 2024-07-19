@@ -157,18 +157,6 @@ function onSpawnNote(noteController)
         end
     end
 end
-MIpozZ = function(noteController)
-    noteZ = noteController.JustBeat - GAMESTATE:GetSongBeat()
-    return noteController:SetBeatPosition(noteZ)
-end
-MIpozZ2 = function (noteController)
-    noteZ = noteController.JustBeat - GAMESTATE:GetSongBeat()
-    return noteController:SetBeatPosition(noteZ*0.75)
-end
-MIpozZ3 = function(noteController)
-    noteZ = noteController.JustBeat - GAMESTATE:GetSongBeat()
-    return noteController:SetBeatPosition(noteZ*0.5)
-end
 --
 function onPause()
 	for i = 1, #scripts do
