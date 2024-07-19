@@ -24,9 +24,6 @@ MImod
 
 設定ファイル: `settings.ini`
 
-## About DankaguLike
-DankaguLike is a fan-made Touhou rhythm game that is a revival of the original end-of-service game Touhou Danmaku Kagura.
-
 ## About WickyPack+MImod
 This is a Global Lua modpack scripts reserved for extra functionalities for DankaguLike that's suitable for your gameplay.
 
