@@ -7,14 +7,14 @@ Welcome to WickyPack+MImod for DankaguLike!!!
 
 Ver. 2.1.0
 Featuring
-+ Difficulty
-+ DamageTint
-+ ArrowPath
-+ TapEffect
-+ JudgeViewer
-+ NoteEffect
-+ SubtitleLyric
-+ Video
++ Difficulty (難易度表示)
++ DamageTint (ダメージ演出)
++ ArrowPath　(矢印レーン)
++ TapEffect (タップエフェクト)
++ JudgeViewer　(判定表示)
++ NoteEffect　(ノーツエフェクト)
++ SubtitleLyric (歌詞表示)
++ Video (動画表示)
 
 MImod
 + C-NoteSet (カスタムノーツ設定)
