@@ -1,3 +1,4 @@
+## 何故全部出したのか
 色々追加したらmain.luaすら書き換えなきゃいけなくなった為、新たに作った次第です。
 
 ※この文章の殆どはWickyPackからの引用です。
@@ -16,11 +17,11 @@ Featuring
 + Video
 
 MImod
-+ C-NoteSet
-+ Houkai
-+ InfiniteLife
-+ MISS-madness
-+ SoftLanding
++ C-NoteSet (カスタムノーツ設定)
++ Houkai (崩壊)
++ InfiniteLife　(無限ライフ)
++ MISS-madness (MISS発狂)
++ SoftLanding　(ソフラン)
 
 設定ファイル: `settings.ini`
 
