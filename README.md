@@ -5,7 +5,7 @@
 
 Welcome to WickyPack+MImod for DankaguLike!!!
 
-Ver. 2.1.0
+Ver. 2.1.1
 Featuring
 + Difficulty (難易度表示)
 + DamageTint (ダメージ演出)
