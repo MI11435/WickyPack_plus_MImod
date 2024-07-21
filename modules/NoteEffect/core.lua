@@ -40,7 +40,7 @@ local function createEffectPool(_prefab, maxEffects)
 			s.transform.localPosition = Vector3(0, 5000, 0)
 			s.transform.localScale = Vector3(1.5, 1, 1)
 			local particleRenderer = s:GetComponent(typeof(CS.UnityEngine.ParticleSystemRenderer))
-			particleRenderer.material.color = util:ColorRGBA(255, 255, 255, ALPHA)
+			particleRenderer.material.color = util.ColorRGBA(255, 255, 255, ALPHA)
 
 			s:SetActive(false)
 			table.insert(eff.effects, createEffect(s))
@@ -128,7 +128,7 @@ local function calculateValue(lane)
 	end
 end
 
-execute.onloaded = function(e)
+execute.onloaded = function()
 
 	MODE = execute.GetOption("MODE")
 	ALPHA = execute.GetOption("ALPHA")
@@ -136,7 +136,7 @@ execute.onloaded = function(e)
 	LONG_NOTE = execute.GetOption("LONG_NOTE")
 	FUZZY_NOTE = execute.GetOption("FUZZY_NOTE")
 
-	local hash = execute.LoadAssetBundle("G_NoteEffect/" .. MODE .. '/' .. util:GetPlatformPath() .. "hit")
+	local hash = execute.LoadAssetBundle("G_NoteEffect/" .. MODE .. '/' .. util.GetPlatformPath() .. "hit")
 
 	EffectPoolObj = GameObject("EffectPool")
 
@@ -154,7 +154,7 @@ execute.onloaded = function(e)
 	GAMESTATE:ChangeJudgeEffect(0)
 end
 
-execute.onHitNote = function(e, id, lane, noteType, judgeType)
+execute.onHitNote = function(id, lane, noteType, judgeType, isAttack)
 	if (noteType == 1) then
 		_poolY.retrieve(Vector3(calculateValue(lane), 0, 0))
 	elseif (noteType == 2 or noteType == 3 or noteType == 4) then

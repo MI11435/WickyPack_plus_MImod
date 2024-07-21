@@ -3,17 +3,13 @@
 -- require "tools/module.lua"
 
 local execute = {}
-execute.active = false
+execute.active = true
 
 local UnityEngine = CS.UnityEngine
 local GameObject = UnityEngine.GameObject
 local Vector2 = UnityEngine.Vector2
-local Vector3 = UnityEngine.Vector3
 local Color = UnityEngine.Color
 local Time = UnityEngine.Time
-local Material = UnityEngine.Material
-local Input = UnityEngine.Input
-local Resources = UnityEngine.Resources
 
 local Texture = nil
 local DamageTint = nil
@@ -53,10 +49,12 @@ end
 
 execute.onloaded = function()
 
-	DamageColor =  util.ColorHexToRGBA(execute.GetOption("color"), 1)
+	DamageColor =  util.ColorHexToRGBA(execute.GetOption("color"), tonumber(execute.GetOption("alpha")))
+
 	local WickyCanvas = util.GetCanvas()
-	Texture = util.LoadTexture("G_DamageTint.png")
+	Texture = execute.LoadTexture("G_DamageTint.png")
 	--Create light (left side) (WickyCanvas)
+
 	local Dance1Obj = GameObject("DamageTint")
 	Dance1Obj.gameObject.transform:SetParent(WickyCanvas.transform, false)
 	DamageTint = Dance1Obj:AddComponent(typeof(UnityEngine.UI.RawImage))
@@ -75,7 +73,7 @@ execute.update = function()
 end
 
 
-execute.onHitNote = function(id, lane, noteType, judgeType)
+execute.onHitNote = function(id, lane, noteType, judgeType, isAttack)
 	if (judgeType == 4) then
 		colorTween1 = SpriteColorTween.new(DamageTint, DamageColor, .4)
 	end

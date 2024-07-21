@@ -71,7 +71,7 @@ local function CreateJudgeCanvas(parentCanvas, name, pos, sprite)
 end
 
 execute.onloaded = function(e)
-	local WickyCanvas = util:GetCanvas()
+	local WickyCanvas = util.GetCanvas()
 	local obj = CS.UnityEngine.Resources.FindObjectsOfTypeAll(typeof(UnityEngine.Material))
 	local textObj = CS.UnityEngine.Resources.FindObjectsOfTypeAll(typeof(UnityEngine.Font))
 	local spriteObj = CS.UnityEngine.Resources.FindObjectsOfTypeAll(typeof(UnityEngine.Sprite))
@@ -112,13 +112,13 @@ execute.onloaded = function(e)
 	end
 end
 
-execute.update = function(e)
+execute.update = function()
 	for _,judge in pairs(Judges) do
 		judge.text.text = judge.count
 	end
 end
 
-execute.onHitNote = function(e, id, lane, noteType, judgeType)
+execute.onHitNote = function(id, lane, noteType, judgeType, isAttack)
 	for _,judge in pairs(Judges) do
 		if judge.type == judgeType then
 			judge.count = judge.count + 1
@@ -127,7 +127,7 @@ execute.onHitNote = function(e, id, lane, noteType, judgeType)
 	end
 end
 
-execute.onMissedNote = function(e, id, lane, noteType)
+execute.onMissedNote = function(id, lane, noteType)
 	Judges[6].count = Judges[6].count + 1
 end
 

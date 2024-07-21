@@ -10,6 +10,12 @@ local Material = UnityEngine.Material
 local Resources = UnityEngine.Resources
 local GameObject = UnityEngine.GameObject
 
+local WickyCanvas = nil
+local diffText = nil
+local diffColor = nil
+local diffMeter = nil
+local diffX = nil
+
 local execute = {}
 execute.active = true
 
@@ -33,47 +39,46 @@ local function CreateLyricCanvas(WickyCanvas, name, pos, color, text, size)
 	_TextCanvasText.color = color
 end
 
-execute.onloaded = function(e)
+execute.onloaded = function()
 	
 	WickyCanvas = util.GetCanvas()
 
-	Wicky_diffText = ''
-	Wicky_diffColor = util:ColorRGB(0, 0, 0)
-	Wicky_diffType = SONGMAN:GetDifficultyToInt()
-	Wicky_diffMeter = SONGMAN:GetMeter()
-   Wicky_diffX = false
+	diffText = ''
+	diffColor = util.ColorRGB(0, 0, 0)
+	local diffType = SONGMAN:GetDifficultyToInt()
+	diffMeter = SONGMAN:GetMeter()
+    diffX = false
 
-	if Wicky_diffType == 0 then 
-		Wicky_diffText = "Easy"
-		Wicky_diffColor = util:ColorRGB(0, 255, 32)
-	elseif Wicky_diffType == 1 then
-		Wicky_diffText = "Normal"
-		Wicky_diffColor = util:ColorRGB(0, 133, 255)
-	elseif Wicky_diffType == 2 then
-		Wicky_diffText = "Hard"
-		Wicky_diffColor = util:ColorRGB(255, 235, 0)
-	elseif Wicky_diffType == 3 then
-		Wicky_diffText = "Extra"
-		Wicky_diffColor = util:ColorRGB(255, 0, 34)
-	elseif Wicky_diffType == 4 then
-		Wicky_diffText = "Lunatic"
-		Wicky_diffColor = util:ColorRGB(222, 0, 255)
+	if diffType == 0 then
+		diffText = "Easy"
+		diffColor = util.ColorRGB(0, 255, 32)
+	elseif diffType == 1 then
+		diffText = "Normal"
+		diffColor = util.ColorRGB(0, 133, 255)
+	elseif diffType == 2 then
+		diffText = "Hard"
+		diffColor = util.ColorRGB(255, 235, 0)
+	elseif diffType == 3 then
+		diffText = "Extra"
+		diffColor = util.ColorRGB(255, 0, 34)
+	elseif diffType == 4 then
+		diffText = "Lunatic"
+		diffColor = util.ColorRGB(222, 0, 255)
 	end
-	UTIL:DelayAction(1,MIdelay) 
+	UTIL:DelayAction(1,MIdelay)
 end
 function MIdelay()
 	if _Houkai==1 then
-		Wicky_diffText = "壊:" .. Wicky_diffText
+		diffText = "壊:" .. diffText
 	end
+    diffX = diffMeter == 12345678
 
-    Wicky_diffX = Wicky_diffMeter == 12345678
-
-    if (Wicky_diffX) then
-        CreateLyricCanvas(WickyCanvas, "TextDifficultyShadow", Vector3(-33, -1002, 0), Wicky_diffColor, Wicky_diffText .. ' X', 36) --36 = サイズ
-        CreateLyricCanvas(WickyCanvas, "TextDifficulty", Vector3(-35, -1000, 0), util:ColorRGB(255, 255, 255), Wicky_diffText .. ' X', 36) --36 = サイズ
+    if (diffX) then
+        CreateLyricCanvas(WickyCanvas, "TextDifficultyShadow", Vector3(-33, -1002, 0), diffColor, diffText .. ' X', 36) --36 = サイズ
+        CreateLyricCanvas(WickyCanvas, "TextDifficulty", Vector3(-35, -1000, 0), util.ColorRGB(255, 255, 255), diffText .. ' X', 36) --36 = サイズ
     else 
-        CreateLyricCanvas(WickyCanvas, "TextDifficultyShadow", Vector3(-33, -1002, 0), Wicky_diffColor, Wicky_diffText .. ' ' .. Wicky_diffMeter, 36) --36 = サイズ
-        CreateLyricCanvas(WickyCanvas, "TextDifficulty", Vector3(-35, -1000, 0), util:ColorRGB(255, 255, 255), Wicky_diffText .. ' ' .. Wicky_diffMeter, 36) --36 = サイズ
+        CreateLyricCanvas(WickyCanvas, "TextDifficultyShadow", Vector3(-33, -1002, 0), diffColor, diffText .. ' ' .. diffMeter, 36) --36 = サイズ
+        CreateLyricCanvas(WickyCanvas, "TextDifficulty", Vector3(-35, -1000, 0), util.ColorRGB(255, 255, 255), diffText .. ' ' .. diffMeter, 36) --36 = サイズ
     
     end
 end

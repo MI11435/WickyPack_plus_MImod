@@ -35,7 +35,7 @@ local function startVideo()
 	RawImage.color = UnityEngine.Color(0,0,0)
 end
 
-execute.onloaded = function(e)
+execute.onloaded = function()
 	startVideo()
 end
 

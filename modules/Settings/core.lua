@@ -174,7 +174,7 @@ execute.onloaded = function()
   RawImage.transform.anchorMax = Vector2(0.95, 0.2)
   RawImage.transform.anchoredPosition = Vector2(0, 0)
   RawImage.transform.sizeDelta = Vector2(0, 0)
-  RawImage.color = util:ColorRGBA(0, 0, 0, 0.8)
+  RawImage.color = util.ColorRGBA(0, 0, 0, 0.8)
 
   CreateButton("PreviousButton", Vector2(xSide - 200, (y1 + y2) / 2), Vector2(50, 50),
     Color(1, 1, 1, 0), { text = "<", color = Color(1, 1, 1, 1), size = 40 }, nil,

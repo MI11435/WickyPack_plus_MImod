@@ -15,8 +15,8 @@ local held = false
 local _particlePool = nil
 local _platform = -1
 local _ring = nil
-local width = util:GetScreenWidth()
-local height = util:GetScreenHeight()
+local width = util.GetScreenWidth()
+local height = util.GetScreenHeight()
 
 --=================================
 --		 POOLING MODULE
@@ -50,6 +50,7 @@ local function setupPool()
 	end
 
 	function ParticlePool:initializePool()
+		--local WickyCanvasTE = util.CreateCanvas("WickyCanvasTE", 2)
 		for i = 1, self.maxParticles do
 			local ParticleProp = GameObject("ParticleProp")
 			ParticleProp.transform:SetParent(WickyCanvasTE.transform, false)
@@ -117,10 +118,22 @@ end
 
 execute.onloaded = function()
 	_platform = APPMAN:GetPlatformInt()
-	local hash = execute.LoadAssetBundle("bundles\\" .. util:GetPlatformPath() .. "ring")
+	local hash = execute.LoadAssetBundle("bundles\\" .. util.GetPlatformPath() .. "ring")
 	_ring = util.LoadObjectHash(hash, "Sparkle")
 
-	WickyCanvasTE = util.CreateCanvas("WickyCanvasTE", 2)
+	--WickyCanvasTE = util.CreateCanvas("WickyCanvasTE", 2)
+	WickyCanvasTE = GameObject("WickyCanvasTE")
+	local WickyCanvasTEComp = WickyCanvasTE:AddComponent(typeof(UnityEngine.Canvas))
+	local WickyCanvasTEScale = WickyCanvasTE:AddComponent(typeof(UnityEngine.UI.CanvasScaler))
+	WickyCanvasTEComp.planeDistance = 2
+	WickyCanvasTEComp.worldCamera = CAMERAMAN:GetCamera()
+	WickyCanvasTEComp.renderMode = UnityEngine.RenderMode.ScreenSpaceCamera
+	WickyCanvasTEScale.uiScaleMode = UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize
+	WickyCanvasTEScale.referenceResolution = Vector2(SCREENMAN:GetScreenWidth(), SCREENMAN:GetScreenHeight())
+	WickyCanvasTEScale.matchWidthOrHeight = 1
+	--Refresh
+	WickyCanvasTEComp.enabled = false
+	WickyCanvasTEComp.enabled = true
 
 	--Pooling
 	setupPool()

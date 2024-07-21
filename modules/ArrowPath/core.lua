@@ -39,7 +39,7 @@ local function Pad_PlayAnimation()
 	end
 end
 
-execute.onloaded = function(e)
+execute.onloaded = function()
 	BeatBarObjPool = GameObject.Find("BeatBarObjectPool")
 
 	_ArrowTexture = execute.LoadTexture("ArrowSprite.png")
@@ -56,12 +56,12 @@ execute.onloaded = function(e)
 	_padSpriteObj = padSpriteObj
 end
 
-execute.update = function(e)
+execute.update = function()
 	KeepBeatBar()
 	Pad_PlayAnimation()
 end
 
-execute.ondestroy = function(e)
+execute.ondestroy = function()
 	
 end
 
