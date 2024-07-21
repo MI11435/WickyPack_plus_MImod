@@ -38,6 +38,6 @@ MImod
 WickyPackと同じです。
 
 ## ダウンロード
-[ここからダウンロードして下さい。](https://github.com/MI11435/WickyPack_plus_MImod/releases)
+[ここからダウンロードして下さい。](https://github.com/MI11435/WickyPack_plus_MImod/releases/latest)
 
 このパッケージはWickyPackに色々足したものです。
