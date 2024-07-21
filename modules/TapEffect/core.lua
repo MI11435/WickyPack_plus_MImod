@@ -1,14 +1,7 @@
-local SIZE = 2.2 --サイズ
-
 local UnityEngine = CS.UnityEngine
 local GameObject = UnityEngine.GameObject
-local Vector2 = UnityEngine.Vector2
 local Vector3 = UnityEngine.Vector3
-local Color = UnityEngine.Color
-local Time = UnityEngine.Time
-local Material = UnityEngine.Material
 local Input = UnityEngine.Input
-local Resources = UnityEngine.Resources
 
 local WickyCanvasTE = nil
 local held = false
@@ -50,7 +43,7 @@ local function setupPool()
 	end
 
 	function ParticlePool:initializePool()
-		--local WickyCanvasTE = util.CreateCanvas("WickyCanvasTE", 2)
+		WickyCanvasTE = util.CreateCanvas("WickyCanvasTE", 3)
 		for i = 1, self.maxParticles do
 			local ParticleProp = GameObject("ParticleProp")
 			ParticleProp.transform:SetParent(WickyCanvasTE.transform, false)
@@ -121,26 +114,20 @@ execute.onloaded = function()
 	local hash = execute.LoadAssetBundle("bundles\\" .. util.GetPlatformPath() .. "ring")
 	_ring = util.LoadObjectHash(hash, "Sparkle")
 
-	--WickyCanvasTE = util.CreateCanvas("WickyCanvasTE", 2)
-	WickyCanvasTE = GameObject("WickyCanvasTE")
-	local WickyCanvasTEComp = WickyCanvasTE:AddComponent(typeof(UnityEngine.Canvas))
-	local WickyCanvasTEScale = WickyCanvasTE:AddComponent(typeof(UnityEngine.UI.CanvasScaler))
-	WickyCanvasTEComp.planeDistance = 2
-	WickyCanvasTEComp.worldCamera = CAMERAMAN:GetCamera()
-	WickyCanvasTEComp.renderMode = UnityEngine.RenderMode.ScreenSpaceCamera
-	WickyCanvasTEScale.uiScaleMode = UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize
-	WickyCanvasTEScale.referenceResolution = Vector2(SCREENMAN:GetScreenWidth(), SCREENMAN:GetScreenHeight())
-	WickyCanvasTEScale.matchWidthOrHeight = 1
-	--Refresh
-	WickyCanvasTEComp.enabled = false
-	WickyCanvasTEComp.enabled = true
-
 	--Pooling
 	setupPool()
 	_particlePool = ParticlePool.new(20)
 end
 
+execute.start = function()
+	if WickyCanvasTE == nil then return end
+	WickyCanvasTEComp = WickyCanvasTE:GetComponent(typeof(UnityEngine.Canvas))
+	WickyCanvasTEComp.scaleFactor = 1
+end
+
 execute.update = function()
+	if WickyCanvasTE == nil or _particlePool == nil then return end
+
 	_particlePool:Scan()
 
 	if _platform == 1 or _platform == 2 then
