@@ -5,7 +5,7 @@
 
 Welcome to WickyPack+MImod for DankaguLike!!!
 
-Ver. 2.1.2
+Ver. 2.2.0
 Featuring
 + Difficulty (難易度表示)
 + DamageTint (ダメージ演出)
@@ -15,6 +15,7 @@ Featuring
 + NoteEffect　(ノーツエフェクト)
 + SubtitleLyric (歌詞表示)
 + Video (動画表示)
++ SongTitle (曲名表示)
 
 MImod
 + C-NoteSet (カスタムノーツ設定)
