@@ -39,7 +39,7 @@ util.GetCanvas = function()
 		local WickyCanvasScale = WickyCanvas:AddComponent(typeof(UnityEngine.UI.CanvasScaler))
 		WickyCanvasComp.planeDistance = 1
 		WickyCanvasComp.worldCamera = CAMERAMAN:GetCamera()
-		WickyCanvasComp.renderMode = UnityEngine.RenderMode.ScreenSpaceOverlay
+		WickyCanvasComp.renderMode = UnityEngine.RenderMode.ScreenSpaceCamera
 		WickyCanvasComp.sortingOrder = 5
 		WickyCanvasScale.uiScaleMode = UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize
 		WickyCanvasScale.referenceResolution = Vector2(1920, 1080)
@@ -55,7 +55,7 @@ util.CreateCanvas = function(name, distance)
 	local WickyCanvasTEScale = WickyCanvasTE:AddComponent(typeof(UnityEngine.UI.CanvasScaler))
 	WickyCanvasTEComp.planeDistance = distance
 	WickyCanvasTEComp.worldCamera = CAMERAMAN:GetCamera()
-	WickyCanvasTEComp.renderMode = UnityEngine.RenderMode.ScreenSpaceOverlay
+	WickyCanvasTEComp.renderMode = UnityEngine.RenderMode.ScreenSpaceCamera
 	WickyCanvasTEScale.uiScaleMode = UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize
 	WickyCanvasTEScale.referenceResolution = Vector2(1920, 1080)
 	WickyCanvasTEScale.matchWidthOrHeight = 1
@@ -136,23 +136,23 @@ util.SaveSettings = function()
 	LIP.save(settingsDir, settings)
 end
 
-util.ColorRGB = function(e, r, g, b)
+util.ColorRGB = function(r, g, b)
 	return Color(r / 255, g / 255, b / 255)
 end
 
-util.ColorRGBA = function(e, r, g, b, a)
+util.ColorRGBA = function(r, g, b, a)
 	return Color(r / 255, g / 255, b / 255, a)
 end
 
 util.ColorHexToRGBA = function(hexValue, alpha)
 	hexValue = hexValue:gsub("#","")
-	local r = tonumber(hexValue:sub(1, 2), 16) / 255
-	local g = tonumber(hexValue:sub(3, 4), 16) / 255
-	local b = tonumber(hexValue:sub(5, 6), 16) / 255
+	local r = tonumber(hexValue:sub(1, 2), 16)
+	local g = tonumber(hexValue:sub(3, 4), 16)
+	local b = tonumber(hexValue:sub(5, 6), 16)
 	return util.ColorRGBA(r, g, b, alpha)
 end
 
-util.loadTexture = function(path)
+util.LoadTexture = function(path)
 	return UTIL:LoadTexture(path)
 end
 
