@@ -26,15 +26,6 @@ MImod
 
 設定ファイル: `settings.ini`
 
-## Featuring
-+ Difficulty: allows viewing difficulty note at bottom right of screen
-+ DamageTint: allows visible damage tint to players when they miss notes.
-+ ArrowPath: a cool moving arrow path on the lane for the flow.
-+ TapEffect: a visible effect whether player taps the screen.
-+ JudgeViewer: allows users to view note judgements (Brillant, Great, Good, Bad, Miss) directly in the gameplay rather than result screen.
-+ NoteEffect: adding cool note effects whether player successfully hit notes.
-+ SubtitleLyric: lyrics that are visible on the screen in the middle of gameplay from just a subtitle file (.srt) in song folder.
-
 ## 使い方
 WickyPackと同じです。
 
