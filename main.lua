@@ -13,11 +13,12 @@ local settings = nil
 local allModules = {}
 local modules = {}
 local scripts = {}
+local paths = {}
 
 local function loadAllScripts()
 	local files = Directory.GetDirectories(Path.Combine(parentDir, "modules"));
 
-	for i = 0, files.Length -1 do
+	for i = 0, files.Length - 1 do
 		local path = Path.Combine(files[i], "core.lua")
 		if File.Exists(path) then
 			local folderName = Path.GetFileNameWithoutExtension(files[i])
@@ -28,6 +29,7 @@ local function loadAllScripts()
 
 			if settings[folderName] ~= nil and settings[folderName].enable == 1 then
 				local script = require(path)
+				table.insert(paths, path)
 
 				if script ~= nil and script.active == true then
 					script.GetOption  = function(key)
@@ -84,7 +86,7 @@ function onloaded()
 			return name:LoadAudio(modules[i] .. "\\" .. asset)
 		end
 		if scripts[i].onloaded == nil then goto continue end
-		scripts[i]:onloaded()
+		scripts[i].onloaded()
 		::continue::
 	end
 end
@@ -97,7 +99,7 @@ function start()
 
 	for i = 1, #scripts do
 		if scripts[i].start == nil then goto continue end
-		scripts[i]:start()
+		scripts[i].start()
 		::continue::
 	end
 end
@@ -105,7 +107,7 @@ end
 function update()
 	for i = 1, #scripts do
 		if scripts[i].update == nil then goto continue end
-		scripts[i]:update()
+		scripts[i].update()
 		::continue::
 	end
 end
@@ -113,15 +115,15 @@ end
 function finish()
 	for i = 1, #scripts do
 		if scripts[i].finish == nil then goto continue end
-		scripts[i]:finish()
+		scripts[i].finish()
 		::continue::
 	end
 end
 
-function onHitNote(id, lane, noteType, judgeType)
+function onHitNote(id, lane, noteType, judgeType, isAttack)
 	for i = 1, #scripts do
 		if scripts[i].onHitNote == nil then goto continue end
-		scripts[i]:onHitNote(id, lane, noteType, judgeType)
+		scripts[i].onHitNote(id, lane, noteType, judgeType, isAttack)
 		::continue::
 	end
 end
@@ -129,39 +131,31 @@ end
 function onMissedNote(id, lane, noteType)
 	for i = 1, #scripts do
 		if scripts[i].onMissedNote == nil then goto continue end
-		scripts[i]:onMissedNote(id, lane, noteType)
+		scripts[i].onMissedNote(id, lane, noteType)
 		::continue::
 	end
 end
----MImod
----
---- @param noteController CS.NoteController
----
+
 function onSpawnNote(noteController)
-	if (noteController.NoteType==CS.NoteType.Fuzzy or noteController.NoteType==CS.NoteType.Normal) and _SoftLanding_MI == true then
-        if noteController.NoteIndex%3==0 then
-            GAMESTATE:SetAutoType(1)
-            noteController:EnableDefaultMove(false)
-            noteController:SetLanePosition(noteController.Lane)
-            noteController:SetDelegate(MIpozZ)
-        elseif noteController.NoteIndex%3==1 then
-            GAMESTATE:SetAutoType(1)
-            noteController:EnableDefaultMove(false)
-            noteController:SetLanePosition(noteController.Lane)
-            noteController:SetDelegate(MIpozZ2)
-        else
-            GAMESTATE:SetAutoType(1)
-            noteController:EnableDefaultMove(false)
-            noteController:SetLanePosition(noteController.Lane)
-            noteController:SetDelegate(MIpozZ3)
-        end
-    end
+	for i = 1, #scripts do
+		if scripts[i].onSpawnNote == nil then goto continue end
+		scripts[i].onSpawnNote(noteController)
+		::continue::
+	end
 end
---
+
+function onSpawnLong(longController)
+	for i = 1, #scripts do
+		if scripts[i].onSpawnLong == nil then goto continue end
+		scripts[i].onSpawnLong(longController)
+		::continue::
+	end
+end
+
 function onPause()
 	for i = 1, #scripts do
 		if scripts[i].onPause == nil then goto continue end
-		scripts[i]:onPause()
+		scripts[i].onPause()
 		::continue::
 	end
 end
@@ -169,7 +163,7 @@ end
 function onResume()
 	for i = 1, #scripts do
 		if scripts[i].onResume == nil then goto continue end
-		scripts[i]:onResume()
+		scripts[i].onResume()
 		::continue::
 	end
 end
@@ -177,7 +171,7 @@ end
 function onInputDown(touchId, posX, screenPosX, screenPosY)
 	for i = 1, #scripts do
 		if scripts[i].onInputDown == nil then goto continue end
-		scripts[i]:onInputDown(touchId, posX, screenPosX, screenPosY)
+		scripts[i].onInputDown(touchId, posX, screenPosX, screenPosY)
 		::continue::
 	end
 end
@@ -185,7 +179,7 @@ end
 function onInputMove(touchId, posX, screenPosX, screenPosY)
 	for i = 1, #scripts do
 		if scripts[i].onInputMove == nil then goto continue end
-		scripts[i]:onInputMove(touchId, posX, screenPosX, screenPosY)
+		scripts[i].onInputMove(touchId, posX, screenPosX, screenPosY)
 		::continue::
 	end
 end
@@ -193,7 +187,15 @@ end
 function onInputUp(touchId, posX, screenPosX, screenPosY)
 	for i = 1, #scripts do
 		if scripts[i].onInputUp == nil then goto continue end
-		scripts[i]:onInputUp(touchId, posX, screenPosX, screenPosY)
+		scripts[i].onInputUp(touchId, posX, screenPosX, screenPosY)
+		::continue::
+	end
+end
+
+function finish()
+	for i = 1, #scripts do
+		if scripts[i].finish == nil then goto continue end
+		scripts[i].finish()
 		::continue::
 	end
 end
@@ -201,18 +203,21 @@ end
 function ondestroy()
 	for i = 1, #scripts do
 		if scripts[i].ondestroy == nil then goto continue end
-		scripts[i]:ondestroy()
+		scripts[i].ondestroy()
 		::continue::
 	end
 
-	for _, moduleName in ipairs(modules) do
-		package.loaded[moduleName] = nil
+	for _, path in ipairs(paths) do
+		package.loaded[path] = nil
 	end
 
-	for _, moduleName in ipairs(modules) do
-		_G[moduleName] = nil
+	for _, path in ipairs(paths) do
+		_G[path] = nil
 	end
 
 	package.loaded['tools\\utils.lua'] = nil
 	_G['tools\\utils.lua'] = nil
+
+	package.loaded['tools\\LIP.lua'] = nil
+	_G['tools\\LIP.lua'] = nil
 end
